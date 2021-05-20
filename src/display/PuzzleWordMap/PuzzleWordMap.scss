@@ -1,0 +1,25 @@
+@import "src/style/variables";
+
+.PuzzleWord {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+
+  &--LetterResultPair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0.5rem;
+  }
+
+  &--MappingArrow {
+    display: flex;
+    justify-content: center;
+    width: $grid-box-size;
+    height: $grid-box-size;
+    line-height: $grid-box-size;
+    padding: 0.125rem;
+    color: #555;
+    transform: rotate(90deg);
+  }
+}

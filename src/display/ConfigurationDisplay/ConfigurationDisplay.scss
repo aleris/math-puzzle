@@ -1,0 +1,13 @@
+@import "../../style/button";
+@import "../../style/form";
+
+.Configuration {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+  &--Buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,45 @@
+@import "src/style/variables";
+
+.Digits {
+  display: flex;
+  justify-content: center;
+  font-size: $grid-box-size;
+  line-height: $grid-box-size;
+  font-weight: bold;
+  border: 1px solid $grid-border-color;
+  margin-left: -1px;
+  margin-top: -1px;
+
+  &--Digit {
+    width: $grid-box-size;
+    height: $grid-box-size;
+    padding: 0.125rem;
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+
+    &:not(:first-child) {
+      border-left: 1px dashed $grid-border-color;
+    }
+  }
+
+  &--HiddenOnPrint {
+
+  }
+
+  &--Hidden {
+    span {
+      visibility: hidden;
+    }
+  }
+}
+
+@media print {
+  .Digits {
+    &--HiddenOnPrint {
+      span {
+        visibility: hidden;
+      }
+    }
+  }
+}

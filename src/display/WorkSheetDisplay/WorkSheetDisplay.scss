@@ -1,0 +1,47 @@
+.WorkSheet {
+  &--Difficulty {
+    position: absolute;
+  }
+
+  &--Title {
+    display: flex;
+    font-size: 2.5rem;
+    font-weight: bold;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  &--Instructions {
+    text-align: center;
+    font-size: 1rem;
+    margin: 1.5rem 0 0.5rem 0;
+    padding: 0;
+  }
+
+  &--Questions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.25rem;
+
+    &> * {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &--Response {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 5 * 8rem;
+  }
+
+  &--Attributions {
+    font-size: 0.5rem;
+    font-style: italic;
+    padding: 0;
+    margin: 0.25rem 0 0 0 ;
+    text-align: center;
+  }
+}

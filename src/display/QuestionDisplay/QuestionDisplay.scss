@@ -1,0 +1,16 @@
+@import "src/style/variables";
+
+.Question {
+  display: flex;
+  margin: 0.5rem;
+
+  &--MappingArrow {
+    display: flex;
+    justify-content: center;
+    width: $grid-box-size;
+    height: $grid-box-size;
+    line-height: $grid-box-size;
+    padding: 0.125rem;
+    color: #555;
+  }
+}

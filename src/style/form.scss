@@ -1,0 +1,29 @@
+form {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  label, .Label {
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    span {
+      padding-bottom: 0.125rem;
+    }
+  }
+  .Label {
+    &--Checkbox {
+      display: block;
+    }
+  }
+
+  select, input {
+    padding: 0.25rem 0.125rem;
+  }
+}

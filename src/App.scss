@@ -1,0 +1,42 @@
+.App {
+  display: flex;
+  justify-content: space-around;
+
+  &--Configuration {
+    flex: 1 0 auto;
+    width: 25rem;
+    max-width: 25rem;
+  }
+
+  &--WorkSheet {
+    display: flex;
+    justify-content: center;
+
+    padding: 10mm;
+    border: 3px dashed #ddd;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+@media print {
+  .App {
+
+    a:visited {
+      color: inherit;
+    }
+
+    &--Configuration {
+      display: none;
+    }
+
+    &--WorkSheet {
+      width: 100%;
+      padding: 0;
+      border: none;
+    }
+  }
+}
