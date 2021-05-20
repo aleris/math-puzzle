@@ -2,7 +2,7 @@
 
 A math puzzle worksheet generator for toddlers 5½+ years that combines arithmetic and reading.
 
-![image](https://user-images.githubusercontent.com/1011245/119011474-c6213080-b99d-11eb-8ef5-5cb397cc63d7.png)
+<img src="https://user-images.githubusercontent.com/1011245/119011474-c6213080-b99d-11eb-8ef5-5cb397cc63d7.png" width="800" />
 
 https://aleris.github.io/math-puzzle
 
