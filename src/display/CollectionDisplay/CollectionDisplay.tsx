@@ -21,7 +21,7 @@ export const CollectionDisplay = () => {
         <div className="Collection--Images">
           {Texts.allImages().map(imageItem =>
             <div key={imageItem.name} className="Collection--Image">
-              <img src={`assets/animals/${imageItem.name}.svg`} alt={imageItem.label} />
+              <img src={`${process.env.PUBLIC_URL}/assets/animals/${imageItem.name}.svg`} alt={imageItem.label} />
               <span>{imageItem.label}</span>
             </div>
           )}

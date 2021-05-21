@@ -1,6 +1,6 @@
 import './ConfigurationDisplay.scss'
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {WorksheetConfig, MAXIMUM_RESULT_VALUE_LIST, MAXIMUM_TEXT_LENGTH_LIST} from '../../generate/WorksheetGenerator'
 import {Texts} from '../../Texts'
 
@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const ConfigurationDisplay = ({config, onChange}: Props) => {
-  const history = useHistory()
   return (
     <form className="Configuration" noValidate onSubmit={() => {}}>
       <h1>{Texts.text('title')}</h1>
@@ -202,7 +201,7 @@ export const ConfigurationDisplay = ({config, onChange}: Props) => {
       </div>
 
       <p>
-        <button className="Button--ButtonLink" onClick={() => history.push('collection')}>Print collection</button>
+        <Link to='/collection'>{Texts.text('print-collection')}</Link>
       </p>
     </form>
   )

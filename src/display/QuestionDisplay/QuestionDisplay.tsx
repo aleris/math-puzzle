@@ -1,7 +1,7 @@
 import './QuestionDisplay.scss'
 import React from 'react'
+import {Question} from '../../generate/QuestionGenerator'
 import {DigitsDisplay} from '../DigitDisplay/DigitsDisplay'
-import {Question} from '../../generate/WorksheetGenerator'
 
 type Props = {
   question: Question

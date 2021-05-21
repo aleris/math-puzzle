@@ -12,7 +12,7 @@ export const ResponseImageDisplay = ({category, name, label}: Props) => {
     <div className="ResponseImage">
       <div className="ResponseImage--CheckImage">
         <div />
-        <img src={`assets/${category}/${name}.svg`} alt={label}/>
+        <img src={`${process.env.PUBLIC_URL}/assets/${category}/${name}.svg`} alt={label}/>
       </div>
       <div className="ResponseImage--Label">{label}</div>
     </div>

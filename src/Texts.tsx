@@ -87,6 +87,10 @@ const TEXTS: {
         'ro': 'Tipărire',
         'en': 'Print',
       },
+      'print-collection': {
+        'ro': 'Tipărire colecție',
+        'en': 'Print collection'
+      },
 
       // worksheet
       'worksheet-title': {

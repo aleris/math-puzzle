@@ -14,3 +14,9 @@ test('changing language changes the titles', () => {
   expect(screen.getByText(/Găsește animalul!/)).toBeInTheDocument();
   expect(screen.getByText(/Puzzle matematic cu animale/)).toBeInTheDocument();
 });
+
+test('clicking on collection link navigates to collection screen', () => {
+  render(<App />);
+  fireEvent.click(screen.getByText(/Print collection/))
+  expect(screen.getByText(/'s Animal Collection/)).toBeInTheDocument();
+})
