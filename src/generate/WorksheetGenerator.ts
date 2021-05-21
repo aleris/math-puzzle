@@ -1,11 +1,15 @@
+import {PuzzleImageMap, PuzzleImageMapper} from './PuzzleImageMapper'
+import {
+  AdditionQuestionConfig,
+  AdditionQuestionGenerator, Question,
+  QuestionGenerator,
+  SubtractionQuestionConfig,
+  SubtractionQuestionGenerator
+} from './QuestionGenerator'
 import {Random} from './Random'
 import {ImageItem, Texts} from '../Texts'
 
-export interface QuestionGeneratorConfigType {
-  enabled: boolean
-}
-
-export type Config = {
+export type WorksheetConfig = {
   locale: string
   numberOfQuestions: number
   additionQuestionConfig: AdditionQuestionConfig
@@ -19,104 +23,18 @@ export type Config = {
 export const MAXIMUM_RESULT_VALUE_LIST = [10, 15, 20, 30, 50, 100]
 export const MAXIMUM_TEXT_LENGTH_LIST = [4, 5, 6, 7, 8, 1001]
 
-export enum Operator {
-  Plus = '+',
-  Minus = '-'
-}
-
-export type Question = {
-  first: number,
-  operator: Operator
-  second: number,
-  result: number
-  mappedLetter?: string | undefined
-}
-
-export class QuestionComparator {
-  static areEqual(a: Question, b: Question) {
-    if (a.result !== b.result) {
-      return false
-    }
-    if (a.first !== b.first) {
-      return false
-    }
-    if (a.operator !== b.operator) {
-      return false
-    }
-    if (a.second !== b.second) {
-      return false
-    }
-    return true
-  }
-}
-
-export interface QuestionGenerator {
-  generate(): Question
-}
-
-export interface AdditionQuestionConfig extends QuestionGeneratorConfigType {
-  resultMaxValue: number,
-  allowZero: boolean
-}
-
-export class AdditionQuestionGenerator implements QuestionGenerator {
-  constructor(public readonly config: AdditionQuestionConfig) { }
-
-  generate(): Question {
-    const allowZero = this.config.allowZero
-    const resultInterval = [allowZero ? 1 : 2, this.config.resultMaxValue]
-    const result = Random.interval(resultInterval[0], resultInterval[1])
-    const first = Random.interval(allowZero ? 0 : 1, result - (allowZero ? 0 : 1))
-    const second = result - first
-    return {
-      first,
-      operator: Operator.Plus,
-      second,
-      result
-    }
-  }
-}
-
-export interface SubtractionQuestionConfig extends QuestionGeneratorConfigType {
-  resultMaxValue: number,
-  allowZero: boolean
-}
-
-export class SubtractionQuestionGenerator implements QuestionGenerator {
-  constructor(public readonly config: SubtractionQuestionConfig) { }
-
-  generate(): Question {
-    const allowZero = this.config.allowZero
-    const first = Random.interval(allowZero ? 0 : 1, this.config.resultMaxValue)
-    const result = Random.interval(allowZero? 0 : 1, first - (allowZero ? 0 : 1))
-    const second = first - result
-    return {
-      first,
-      operator: Operator.Minus,
-      second,
-      result
-    }
-  }
-}
-
-export type PuzzleImageMap = {
-  image: ImageItem
-  questionIndexToLetterMap: Map<number, string>
-  letterToResultMap: Map<string, number>
-}
-
 export type WorkSheet = {
   questions: Question[]
   puzzleImageMap: PuzzleImageMap
   responseImagesSlice: ImageItem[]
-  config: Config
+  config: WorksheetConfig
   difficulty: number
 }
 
-export class Generator {
+export class WorksheetGenerator {
   private readonly questionGenerators: QuestionGenerator[]
 
-  constructor(public readonly config: Config) {
+  constructor(public readonly config: WorksheetConfig) {
     this.questionGenerators = []
     if (config.additionQuestionConfig.enabled) {
       this.questionGenerators.push(new AdditionQuestionGenerator(config.additionQuestionConfig))
@@ -144,9 +62,9 @@ export class Generator {
       label: this.config.showUppercase ? randomImage.label.toUpperCase() : randomImage.label
     }
     const questions = this.generateQuestions()
-    const {questionIndexToLetterMap, letterToResultMap} = this.generateMaps(questions, puzzleImage.label)
+    const puzzleImageMap = PuzzleImageMapper.map(questions, puzzleImage)
     Array
-      .from(questionIndexToLetterMap.entries())
+      .from(puzzleImageMap.questionIndexToLetterMap.entries())
       .forEach(([questionIndex, letter]) => questions[questionIndex].mappedLetter = letter)
     questions.forEach(question => {
       if (question.mappedLetter === undefined) {
@@ -156,11 +74,6 @@ export class Generator {
         }
       }
     })
-    const puzzleImageMap = {
-      image: puzzleImage,
-      questionIndexToLetterMap,
-      letterToResultMap,
-    }
     const imagesWithoutPickedPuzzleImage = images.filter(image => image.label !== randomImage.label)
     const responseImagesSlice = Random.slice(imagesWithoutPickedPuzzleImage, this.config.maxResponseImages, puzzleImage)
       .map(image => ({
@@ -174,25 +87,6 @@ export class Generator {
       config: this.config,
       difficulty: this.calculateDifficulty()
     }
-  }
-
-  private generateMaps(questions: Question[], puzzleWord: string) {
-    const questionIndexToLetterMap = new Map<number, string>()
-    const letterToResultMap = new Map<string, number>()
-    const allQuestionIndexes = Array.from({length: questions.length}).map((_, index) => index)
-    const remainingIndexes = allQuestionIndexes
-    for (const letter of puzzleWord) {
-      let indexesToPickFrom = remainingIndexes
-      if (indexesToPickFrom.length === 0) {
-        indexesToPickFrom = allQuestionIndexes
-      }
-      const indexIndex = Random.interval(0, indexesToPickFrom.length - 1)
-      const randomIndex = indexesToPickFrom[indexIndex]
-      questionIndexToLetterMap.set(randomIndex, letter)
-      letterToResultMap.set(letter, questions[randomIndex].result)
-      remainingIndexes.splice(indexIndex, 1)
-    }
-    return {questionIndexToLetterMap, letterToResultMap}
   }
 
   generateQuestions(): Array<Question> {

@@ -1,7 +1,7 @@
 import './PuzzleWordMap.scss'
 import React from 'react'
 import {DigitsDisplay} from '../DigitDisplay/DigitsDisplay'
-import {PuzzleImageMap} from '../../generate/Generator'
+import {PuzzleImageMap} from '../../generate/WorksheetGenerator'
 
 type Props = {
   puzzleImageMap: PuzzleImageMap

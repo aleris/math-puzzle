@@ -1,12 +1,12 @@
 import './ConfigurationDisplay.scss'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import {Config, MAXIMUM_RESULT_VALUE_LIST, MAXIMUM_TEXT_LENGTH_LIST} from '../../generate/Generator'
+import {WorksheetConfig, MAXIMUM_RESULT_VALUE_LIST, MAXIMUM_TEXT_LENGTH_LIST} from '../../generate/WorksheetGenerator'
 import {Texts} from '../../Texts'
 
 type Props = {
-  config: Config
-  onChange: (config: Config) => void
+  config: WorksheetConfig
+  onChange: (config: WorksheetConfig) => void
 }
 
 export const ConfigurationDisplay = ({config, onChange}: Props) => {

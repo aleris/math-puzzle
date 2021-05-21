@@ -1,9 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders config and worksheet titles', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/Find the animal!/)).toBeInTheDocument();
+  expect(screen.getByText(/Animal Math Puzzle/)).toBeInTheDocument();
+});
+
+test('changing language changes the titles', () => {
+  render(<App />);
+  fireEvent.change(screen.getByLabelText(/Language/), {target: {value: 'ro'}})
+  expect(screen.getByText(/Găsește animalul!/)).toBeInTheDocument();
+  expect(screen.getByText(/Puzzle matematic cu animale/)).toBeInTheDocument();
 });

@@ -1,7 +1,7 @@
 import './WorkSheetDisplay.scss'
 import React from 'react'
 import {DifficultyDisplay} from '../DifficultyDisplay/DifficultyDisplay'
-import {WorkSheet} from '../../generate/Generator'
+import {WorkSheet} from '../../generate/WorksheetGenerator'
 import {PuzzleWordMap} from '../PuzzleWordMap/PuzzleWordMap'
 import {QuestionDisplay} from '../QuestionDisplay/QuestionDisplay'
 import {ResponseImageDisplay} from '../ResponseImageDisplay/ResponseImageDisplay'

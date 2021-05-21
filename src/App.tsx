@@ -7,12 +7,12 @@ import {
 } from 'react-router-dom';
 import {CollectionDisplay} from './display/CollectionDisplay/CollectionDisplay'
 import {ConfigurationDisplay} from './display/ConfigurationDisplay/ConfigurationDisplay'
-import {Config, Generator} from './generate/Generator'
+import {WorksheetConfig, WorksheetGenerator} from './generate/WorksheetGenerator'
 import {Texts} from './Texts'
 import {WorkSheetDisplay} from './display/WorkSheetDisplay/WorkSheetDisplay'
 
 function App() {
-  const [config, setConfig] = useState<Config>({
+  const [config, setConfig] = useState<WorksheetConfig>({
     locale: 'en',
     numberOfQuestions: 10,
     additionQuestionConfig: {
@@ -35,12 +35,12 @@ function App() {
     document.title = Texts.text('title')
   }, [config.locale])
 
-  const handleConfigurationOnChange = (config: Config) => {
+  const handleConfigurationOnChange = (config: WorksheetConfig) => {
     setConfig(config)
     Texts.locale = config.locale
   }
 
-  const workSheet = new Generator(config).generate()
+  const workSheet = new WorksheetGenerator(config).generate()
   return (
     <div className="App">
       <Router>
