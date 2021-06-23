@@ -21,7 +21,8 @@ export type WorksheetConfig = {
 }
 
 export const MAXIMUM_RESULT_VALUE_LIST = [10, 15, 20, 30, 50, 100]
-export const MAXIMUM_TEXT_LENGTH_LIST = [4, 5, 6, 7, 8, 1001]
+export const UNLIMITED_TEXT_LENGTH = 1001
+export const MAXIMUM_TEXT_LENGTH_LIST = [4, 5, 6, 7, 8, UNLIMITED_TEXT_LENGTH]
 
 export type WorkSheet = {
   questions: Question[]
@@ -50,7 +51,10 @@ export class WorksheetGenerator {
 
   generate(): WorkSheet {
     const allImages = Texts.allImages()
-    let images = allImages.filter(image => image.label.length <= this.config.maxTextLength)
+    const maxTextLength = this.config.maxTextLength === UNLIMITED_TEXT_LENGTH
+      ? this.config.numberOfQuestions
+      : Math.min(this.config.numberOfQuestions, this.config.maxTextLength)
+    let images = allImages.filter(image => image.label.length <= maxTextLength)
     if (images.length === 0) {
       console.warn(`Cannot find word with maxim length ${this.config.maxTextLength}, falling back to all words`)
       images = allImages

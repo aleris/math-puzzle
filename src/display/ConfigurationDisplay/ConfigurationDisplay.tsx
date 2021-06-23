@@ -1,7 +1,12 @@
 import './ConfigurationDisplay.scss'
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {WorksheetConfig, MAXIMUM_RESULT_VALUE_LIST, MAXIMUM_TEXT_LENGTH_LIST} from '../../generate/WorksheetGenerator'
+import {
+  WorksheetConfig,
+  MAXIMUM_RESULT_VALUE_LIST,
+  MAXIMUM_TEXT_LENGTH_LIST,
+  UNLIMITED_TEXT_LENGTH
+} from '../../generate/WorksheetGenerator'
 import {Texts} from '../../Texts'
 
 type Props = {
@@ -40,6 +45,12 @@ export const ConfigurationDisplay = ({config, onChange}: Props) => {
           <option value="8">8</option>
           <option value="9">9</option>
           <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
         </select>
       </label>
 
@@ -50,7 +61,7 @@ export const ConfigurationDisplay = ({config, onChange}: Props) => {
           onChange={input => onChange({...config, maxTextLength: parseInt(input.target.value, 10)})}
         >
           {MAXIMUM_TEXT_LENGTH_LIST.map(v =>
-            <option key={v} value={v}>{v < 1001 ? v : Texts.text('config-unlimited')}</option>
+            <option key={v} value={v}>{v < UNLIMITED_TEXT_LENGTH ? v : Texts.text('config-unlimited')}</option>
           )}
         </select>
       </label>
