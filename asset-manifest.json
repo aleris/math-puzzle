@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/math-puzzle/static/css/main.d5a3b3a8.chunk.css",
-    "main.js": "/math-puzzle/static/js/main.fc0be396.chunk.js",
-    "main.js.map": "/math-puzzle/static/js/main.fc0be396.chunk.js.map",
+    "main.css": "/math-puzzle/static/css/main.ea8e0318.chunk.css",
+    "main.js": "/math-puzzle/static/js/main.2e837ceb.chunk.js",
+    "main.js.map": "/math-puzzle/static/js/main.2e837ceb.chunk.js.map",
     "runtime-main.js": "/math-puzzle/static/js/runtime-main.fffa5701.js",
     "runtime-main.js.map": "/math-puzzle/static/js/runtime-main.fffa5701.js.map",
     "static/js/2.088bd478.chunk.js": "/math-puzzle/static/js/2.088bd478.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.e559d3a9.chunk.js": "/math-puzzle/static/js/3.e559d3a9.chunk.js",
     "static/js/3.e559d3a9.chunk.js.map": "/math-puzzle/static/js/3.e559d3a9.chunk.js.map",
     "index.html": "/math-puzzle/index.html",
-    "static/css/main.d5a3b3a8.chunk.css.map": "/math-puzzle/static/css/main.d5a3b3a8.chunk.css.map",
+    "static/css/main.ea8e0318.chunk.css.map": "/math-puzzle/static/css/main.ea8e0318.chunk.css.map",
     "static/js/2.088bd478.chunk.js.LICENSE.txt": "/math-puzzle/static/js/2.088bd478.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fffa5701.js",
     "static/js/2.088bd478.chunk.js",
-    "static/css/main.d5a3b3a8.chunk.css",
-    "static/js/main.fc0be396.chunk.js"
+    "static/css/main.ea8e0318.chunk.css",
+    "static/js/main.2e837ceb.chunk.js"
   ]
 }
